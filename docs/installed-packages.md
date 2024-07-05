@@ -3,6 +3,9 @@
 ## Backend
 
 ```bash
+# graphql
+npm i @nestjs/graphql @nestjs/apollo @apollo/server graphql
+
 # class-transformer
 # - JavaScript Plain Object と Class Object(instance) を相互に変換
 # - JSON と JavaScript Plain Object を相互に変換
