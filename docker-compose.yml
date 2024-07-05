@@ -1,4 +1,3 @@
-version: "3"
 services:
   frontend:
     container_name: next_nest_gql_sample_frontend
@@ -20,20 +19,6 @@ services:
       - "8000:8000"
     networks:
       - next_nest_gql_sample_network
-
-  storybook:
-    container_name: dev_next_nest_sample_storybook
-    build:
-      context: ./frontend
-      dockerfile: ./Dockerfile.local
-    command: yarn storybook
-    tty: true
-    volumes:
-      - ./:/var/www
-    ports:
-      - "6006:6006"
-    networks:
-      - dev_next_nest_sample_network
 
   backend:
     container_name: next_nest_gql_sample_backend
