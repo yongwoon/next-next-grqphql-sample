@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type User {
+  username: String!
+  email: String!
+}
+
 type Query {
-  isUser: Boolean!
+  users(username: String!): [User!]!
+}
+
+type Mutation {
+  createUser(username: String!, email: String!): Boolean!
 }
