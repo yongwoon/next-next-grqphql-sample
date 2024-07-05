@@ -67,8 +67,8 @@ psql -U root -p 5432
 - create database
 
 ```sql
-CREATE DATABASE uber_eats_development ENCODING UTF_8;
-CREATE DATABASE uber_eats_test ENCODING UTF_8;
+CREATE DATABASE next_nest_gql_development ENCODING UTF_8;
+CREATE DATABASE next_nest_gql_test ENCODING UTF_8;
 ```
 
 ## その他

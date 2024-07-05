@@ -1,7 +1,7 @@
 version: "3"
 services:
   frontend:
-    container_name: dev_next_nest_template_frontend
+    container_name: next_nest_gql_sample_frontend
     build:
       context: ./frontend
       dockerfile: ./Dockerfile.local
@@ -19,7 +19,7 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - dev_next_nest_template_network
+      - next_nest_gql_sample_network
 
   storybook:
     container_name: dev_next_nest_sample_storybook
@@ -36,7 +36,7 @@ services:
       - dev_next_nest_sample_network
 
   backend:
-    container_name: dev_next_nest_template_backend
+    container_name: next_nest_gql_sample_backend
     build:
       context: ./backend
       dockerfile: ./Dockerfile.local
@@ -56,7 +56,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - dev_next_nest_template_network
+      - next_nest_gql_sample_network
     # healthcheck:
     #   test: ["CMD", "curl", "http://backend:3000/graphql"]
     #   interval: 10s
@@ -64,7 +64,7 @@ services:
     #   retries: 3
 
   db:
-    container_name: dev_next_nest_template_db
+    container_name: next_nest_gql_sample_db
     image: mysql:8.0.32
     command: >
       mysqld
@@ -74,7 +74,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - dev_next_nest_template_db_volume:/var/lib/mysql
+      - next_nest_gql_sample_db_volume:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
     security_opt:
       - seccomp:unconfined
@@ -83,12 +83,12 @@ services:
       # MYSQL_USER: mysqlusername
       # MYSQL_PASSWORD: mysqluserpass
       # MYSQL_ROOT_PASSWORD: mysqlrootpass
-      MYSQL_DATABASE: remedy_hr_development
+      MYSQL_DATABASE: next_nest_gql_development
     networks:
-      - dev_next_nest_template_network
+      - next_nest_gql_sample_network
 
 networks:
-  dev_next_nest_template_network:
+  next_nest_gql_sample_network:
 
 volumes:
-  dev_next_nest_template_db_volume:
+  next_nest_gql_sample_db_volume:
