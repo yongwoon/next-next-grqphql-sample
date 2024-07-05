@@ -19,12 +19,6 @@ npm i --save @nestjs/config
 npm i cross-env
 # HTTP request
 npm i got
-# for form data
-npm i form-data
-# for cron
-npm i --save @nestjs/schedule
-# for image upload
-npm i aws-sdk
 ```
 
 ## Frontend
