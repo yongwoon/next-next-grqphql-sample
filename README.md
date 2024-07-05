@@ -5,8 +5,8 @@
 | item   | content        |
 | ------ | -------------- |
 | nodejs | 18.18.0-alpine |
-| nestjs |                |
-| nextjs |                |
+| nestjs | 10.0.0         |
+| nextjs | 14.2.4         |
 
 ## How to run in local ?
 
