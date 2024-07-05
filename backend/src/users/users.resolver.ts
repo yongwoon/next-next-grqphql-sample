@@ -1,4 +1,9 @@
-import { Resolver } from '@nestjs/graphql';
+import { Query, Resolver } from '@nestjs/graphql';
 
 @Resolver()
-export class UsersResolver {}
+export class UsersResolver {
+  @Query(() => Boolean)
+  isUser(): boolean {
+    return true;
+  }
+}
