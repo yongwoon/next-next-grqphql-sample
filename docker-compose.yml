@@ -60,7 +60,7 @@ services:
       - "3306:3306"
     volumes:
       - next_nest_gql_sample_db_volume:/var/lib/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
     security_opt:
       - seccomp:unconfined
     environment:
