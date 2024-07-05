@@ -5,7 +5,7 @@
 - Create Network (only one time)
 
 ```bash
-docker network create dev_next_nest_template_network
+docker network create next_nest_gql_sample_network
 ```
 
 - Build Image
