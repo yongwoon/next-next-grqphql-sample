@@ -1,0 +1,94 @@
+version: "3"
+services:
+  frontend:
+    container_name: dev_next_nest_template_frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile.local
+    # command: npm run dev
+    stdin_open: true
+    tty: true
+    # environment:
+    #   NEXT_PUBLIC_EXTERNAL_GRAPHQL_ENDPOINT: "http://localhost:3000/graphql"
+    #   INTERNAL_GRAPHQL_ENDPOINT: "http://backend:3000/graphql"
+    # depends_on:
+    #   backend:
+    #     condition: service_healthy
+    volumes:
+      - ./frontend:/var/www
+    ports:
+      - "8000:8000"
+    networks:
+      - dev_next_nest_template_network
+
+  storybook:
+    container_name: dev_next_nest_sample_storybook
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile.local
+    command: yarn storybook
+    tty: true
+    volumes:
+      - ./:/var/www
+    ports:
+      - "6006:6006"
+    networks:
+      - dev_next_nest_sample_network
+
+  backend:
+    container_name: dev_next_nest_template_backend
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile.local
+    # command: npm run start:local
+    stdin_open: true
+    tty: true
+    # environment:
+    #   DB_HOST: db
+    #   DB_PORT: 3306
+    #   DB_USERNAME: root
+    #   DB_PASSWORD:
+    #   DB_NAME: remedy_hr_development
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/var/www
+    ports:
+      - "3000:3000"
+    networks:
+      - dev_next_nest_template_network
+    # healthcheck:
+    #   test: ["CMD", "curl", "http://backend:3000/graphql"]
+    #   interval: 10s
+    #   timeout: 30s
+    #   retries: 3
+
+  db:
+    container_name: dev_next_nest_template_db
+    image: mysql:8.0.32
+    command: >
+      mysqld
+        --default-authentication-plugin=mysql_native_password
+        --character-set-server=utf8mb4
+        --collation-server=utf8mb4_general_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - dev_next_nest_template_db_volume:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      # MYSQL_USER: mysqlusername
+      # MYSQL_PASSWORD: mysqluserpass
+      # MYSQL_ROOT_PASSWORD: mysqlrootpass
+      MYSQL_DATABASE: remedy_hr_development
+    networks:
+      - dev_next_nest_template_network
+
+networks:
+  dev_next_nest_template_network:
+
+volumes:
+  dev_next_nest_template_db_volume:
